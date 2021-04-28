@@ -18,5 +18,9 @@ defmodule ShiftingShiftTest do
     test "wraps round the beginning of the alphabet" do
       assert ShiftingShift.decrypt("EaB") == "EvW"
     end
+
+    test "increments the shift for subsequent letters when the decrypted letter is an upper or lower case vowel" do
+      assert ShiftingShift.decrypt("EFxkx") == "EAreq"
+    end
   end
 end

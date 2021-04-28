@@ -12,7 +12,8 @@ defmodule ShiftingShift do
   end
 
   defp decrypt_chars([head | tail], offset) do
-    [shift(head, offset) | decrypt_chars(tail, offset)]
+    letter = shift(head, offset)
+    [letter | decrypt_chars(tail, update_offset(offset, letter))]
   end
 
   defp offset_for_letter(letter) when letter in ?A..?Z do
@@ -31,5 +32,13 @@ defmodule ShiftingShift do
 
   defp shift(letter, offset) do
     letter - offset
+  end
+
+  defp update_offset(offset, letter) when letter in 'AEIOUaeiou' do
+    offset + 1
+  end
+
+  defp update_offset(offset, _letter) do
+    offset
   end
 end
