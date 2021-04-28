@@ -1,4 +1,18 @@
 defmodule ShiftingShift do
+  @doc """
+  Decrypt a string according to the algorithm described in `README`.
+
+  ## Examples (these are executed with the tests):
+
+      iex> ShiftingShift.decrypt("acdefhi")
+      "abcdefg"
+
+      iex> ShiftingShift.decrypt("Sthnu nvuo 'dk el fm'")
+      "Santa says 'ho ho ho'"
+
+      iex> ShiftingShift.decrypt("12 Dedx Tl Khabma")
+      "12 Days Of Easter"
+  """
   def decrypt(text) do
     text |> String.to_charlist() |> decrypt_chars() |> to_string
   end
