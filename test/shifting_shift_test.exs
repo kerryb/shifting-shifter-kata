@@ -26,5 +26,9 @@ defmodule ShiftingShiftTest do
     test "wraps the offset back to 1 if it reaches 27" do
       assert ShiftingShift.decrypt("Zaa") == "Zaz"
     end
+
+    test "ignores non-alpha characters" do
+      assert ShiftingShift.decrypt("->EF42xk...x") == "->EA42re...q"
+    end
   end
 end

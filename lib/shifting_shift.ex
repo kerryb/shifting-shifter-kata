@@ -3,17 +3,25 @@ defmodule ShiftingShift do
     text |> String.to_charlist() |> decrypt_chars() |> to_string
   end
 
-  defp decrypt_chars([head | tail]) do
+  defp decrypt_chars([head | tail]) when head in ?A..?Z or head in ?a..?z do
     [head | decrypt_chars(tail, offset_for_letter(head))]
+  end
+
+  defp decrypt_chars([head | tail]) do
+    [head | decrypt_chars(tail)]
   end
 
   defp decrypt_chars([], _offset) do
     []
   end
 
-  defp decrypt_chars([head | tail], offset) do
+  defp decrypt_chars([head | tail], offset) when head in ?A..?Z or head in ?a..?z do
     letter = shift(head, offset)
     [letter | decrypt_chars(tail, update_offset(offset, letter))]
+  end
+
+  defp decrypt_chars([head | tail], offset) do
+    [head | decrypt_chars(tail, offset)]
   end
 
   defp offset_for_letter(letter) when letter in ?A..?Z do
