@@ -10,5 +10,9 @@ defmodule ShiftingShiftTest do
     test "shifts subsequent letters backwards by the number value of the first letter" do
       assert ShiftingShift.decrypt("EMP") == "EHK"
     end
+
+    test "ignores case" do
+      assert ShiftingShift.decrypt("emp") == "ehk"
+    end
   end
 end

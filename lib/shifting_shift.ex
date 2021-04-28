@@ -15,7 +15,11 @@ defmodule ShiftingShift do
     [head - offset | decrypt_chars(tail, offset)]
   end
 
-  defp offset_for_letter(letter) do
+  defp offset_for_letter(letter) when letter in ?A..?Z do
     letter - ?A + 1
+  end
+
+  defp offset_for_letter(letter) when letter in ?a..?z do
+    letter - ?a + 1
   end
 end
