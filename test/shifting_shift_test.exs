@@ -14,5 +14,9 @@ defmodule ShiftingShiftTest do
     test "ignores case" do
       assert ShiftingShift.decrypt("emp") == "ehk"
     end
+
+    test "wraps round the beginning of the alphabet" do
+      assert ShiftingShift.decrypt("EaB") == "EvW"
+    end
   end
 end
