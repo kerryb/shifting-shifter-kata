@@ -14,6 +14,7 @@ defmodule ShiftingShift do
       "12 Days Of Easter"
   """
   def decrypt(text) do
+    # Convert [unicode] string to charlist so we can do arithmetic on the individual chars
     text |> String.to_charlist() |> decrypt_chars() |> to_string
   end
 
@@ -22,6 +23,7 @@ defmodule ShiftingShift do
   end
 
   defp decrypt_chars([head | tail]) do
+    # keep passing non-alpha chars unchanged until we hit a letter
     [head | decrypt_chars(tail)]
   end
 
@@ -35,6 +37,7 @@ defmodule ShiftingShift do
   end
 
   defp decrypt_chars([head | tail], offset) do
+    # pass non-alphas through unchanged
     [head | decrypt_chars(tail, offset)]
   end
 
@@ -49,6 +52,7 @@ defmodule ShiftingShift do
   defp shift(letter, offset)
        when (letter in ?A..?Z and letter < ?A + offset) or
               (letter in ?a..?z and letter < ?a + offset) do
+    # wrap round when offset would take us out of the alphabet
     letter - offset + 26
   end
 
