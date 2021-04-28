@@ -35,7 +35,7 @@ defmodule ShiftingShift do
   end
 
   defp update_offset(offset, letter) when letter in 'AEIOUaeiou' do
-    offset + 1
+    Integer.mod(offset + 1, 26)
   end
 
   defp update_offset(offset, _letter) do

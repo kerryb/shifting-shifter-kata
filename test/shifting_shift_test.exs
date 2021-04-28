@@ -22,5 +22,9 @@ defmodule ShiftingShiftTest do
     test "increments the shift for subsequent letters when the decrypted letter is an upper or lower case vowel" do
       assert ShiftingShift.decrypt("EFxkx") == "EAreq"
     end
+
+    test "wraps the offset back to 1 if it reaches 27" do
+      assert ShiftingShift.decrypt("Zaa") == "Zaz"
+    end
   end
 end
